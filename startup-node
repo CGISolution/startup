@@ -19,7 +19,6 @@
 . /lib/lsb/init-functions
 
 
-
 APPPATH="/var/www/startup"
 
 #PATH=/sbin:/usr/sbin:/bin:/usr/bin:/var/www/startup
@@ -41,20 +40,6 @@ log()
 
 do_start ()
 {
-    # checks if the process is already running	
-    #if [ -f "$PIDFILE" ]; then
-    #    log_end_msg 1
-    #    log_failure_msg "Process is already running"
-    #    exit 1
-    #fi
-
-   
-    #starts instance
-
-    #start-stop-daemon --start --quiet --pidfile $PIDFILE --exec $NODEJS --test > /dev/null \
-    #    || return 1
-
-    #start-stop-daemon --start --oknodo -m --pidfile $PIDFILE -x $NODEJS $INDEX | tee -a $LOGFILE \
 
     if ! start-stop-daemon \
         --start \
@@ -100,7 +85,11 @@ do_stop ()
 
         log_daemon_msg "Stopped $DESC" $NAME
         log_end_msg 0
-        exit 0
+
+        if [ $@ != false ]; then
+            exit 0
+        fi
+
     else
         log_daemon_msg "Failed to stop $DESC"
         log_end_msg 1
@@ -117,7 +106,7 @@ case "$1" in
         do_stop
         ;;
     restart|force-reload)
-        do_stop
+        do_stop false
         sleep 1
         do_start
     ;;
@@ -126,7 +115,7 @@ case "$1" in
         ;;
     *)
         N=/etc/init.d/$NAME
-        echo "Usage: $N {start|stop|restart|force-reload|status}" >&2
+        echo "Usage: service $NAME {start|stop|restart|force-reload|status}" >&2
         exit 3
     ;;
 esac
