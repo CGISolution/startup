@@ -1,0 +1,6 @@
+
+USER="wgallios"
+GROUP="wgallios"
+
+# Location of application
+APPPATH="/var/www/startup/"
