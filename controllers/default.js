@@ -1,6 +1,6 @@
 exports.install = function (framework)
 {
-        framework.route('/', homepage);
+    framework.route('/', homepage);
 };
 
 
