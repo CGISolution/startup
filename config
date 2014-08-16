@@ -1,1 +1,2 @@
 
+database: mongodb://user:pasw@localhost:27017/database
