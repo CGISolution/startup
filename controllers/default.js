@@ -7,5 +7,6 @@ exports.install = function (framework)
 function homepage ()
 {
     var self = this;
-    self.view('homepage');
+    //self.view('homepage');
+    self.view('app');
 }
