@@ -1,3 +1,5 @@
 
 *.swp
 tmp/*.js
+
+public/css/*.css

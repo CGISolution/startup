@@ -4,11 +4,11 @@ module.exports = function (grunt)
         less: {
             development: {
                 options: {
-                    paths: ['public/less'],
+                    paths: ['public/false'],
                     compress: false
                 },
                 files: {
-                    // target.css file: source.less
+                    'public/css/main.css': 'public/less/main.less'
                 }
             }
         }
